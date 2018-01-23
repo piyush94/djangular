@@ -2,6 +2,10 @@
 
 <html>
 
+<head>
+    <link rel="stylesheet" type="text/css" href="src={% static "scrumboard/css/scrumboard.css" %}">
+</head>
+
 <body ng-app="scrumboard.demo">
 
     {% verbatim %}
@@ -9,7 +13,9 @@
         <div ng-repeat="list in data">
             <h3>{{ list.name }}</h3>
             <ul>
-                <li ng-repeat="card in list.cards">{{ card.title }}</li>
+                <li ng-repeat="card in list.cards">
+                    <scrumboard-card></scrumboard-card>
+                </li>
             </ul>
             <input type="text" ng-model="new_title" />
             <button ng-click="add(list, new_title)">+</button>
@@ -19,6 +25,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
     <script src={% static "scrumboard/scrumboard.js" %}></script>
+    <script src={% static "scrumboard/card.directive.js" %}></script>
 </body>
 
 </html>
