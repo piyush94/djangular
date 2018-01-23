@@ -1,7 +1,7 @@
 (function() {
   "use strict";
 
-  angular.module("scrumboard.demo").directive("scrumboard-card", CardDirective);
+  angular.module("scrumboard.demo").directive("scrumboardCard", CardDirective);
 
   function CardDirective() {
     return {
