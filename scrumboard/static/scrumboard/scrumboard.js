@@ -1,22 +1,38 @@
-(function () {
-    'use strict';
+(function() {
+  "use strict";
 
-    angular.module('scrumboard.demo', []).controller('ScrumboardController', ['$scope', '$http', ScrumboardController]);
+  angular
+    .module("scrumboard.demo", [])
+    .controller("ScrumboardController", [
+      "$scope",
+      "$http",
+      ScrumboardController
+    ]);
 
-    function ScrumboardController($scope, $http) {
+  function ScrumboardController($scope, $http) {
+    $scope.add = function(list, title) {
+      var card = {
+        title: title,
+        list: list.id
+      };
 
-        $scope.add = function (list, title) {
-            var card = {
-                title: title
-            };
+      $http.post("/scrumboard/cards/", card).then(
+        //handle correct response
+        function(response) {
+          list.cards.push(response.data);
+        },
+        //handle error
+        function() {
+          alert("Could not create card!");
+        }
+      );
+    };
 
-            list.cards.push(card);
-        };
+    $scope.data = [];
 
-        $scope.data = [];
-        $http.get('/scrumboard/lists').then(function(response){
-            $scope.data = response.data;
-        });
-    }
-
+    //get data from REST Api
+    $http.get("/scrumboard/lists/").then(function(response) {
+      $scope.data = response.data;
+    });
+  }
 })();
