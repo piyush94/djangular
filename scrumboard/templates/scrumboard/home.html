@@ -5,6 +5,7 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
     <script src={% static "scrumboard/scrumboard.js" %}></script>
+    <script src={% static "scrumboard/scrumboard.config.js" %}></script>
     <script src={% static "scrumboard/card.directive.js" %}></script>
     <link rel="stylesheet" type="text/css" href="{% static "scrumboard/css/scrumboard.css" %}">
 </head>
@@ -26,7 +27,7 @@
             </ul>
             <div class="flex">
                 <input type="text" ng-model="new_title" />
-                <button ng-click="add(list, new_title)">+</button>
+                <button ng-click="add(list, new_title);new_title='';">+</button>
             </div>
         </div>
     </div>
