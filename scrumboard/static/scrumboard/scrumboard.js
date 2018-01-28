@@ -1,4 +1,4 @@
-(function() {
+(function () {
   "use strict";
 
   angular
@@ -10,7 +10,7 @@
     ]);
 
   function ScrumboardController($scope, $http) {
-    $scope.add = function(list, title) {
+    $scope.add = function (list, title) {
       var card = {
         title: title,
         list: list.id
@@ -18,20 +18,24 @@
 
       $http.post("/scrumboard/cards/", card).then(
         //handle correct response
-        function(response) {
+        function (response) {
           list.cards.push(response.data);
         },
         //handle error
-        function() {
+        function () {
           alert("Could not create card!");
         }
       );
     };
 
+    $scope.login = function () {
+      $http.post('/auth_api/login/', { "username": "osboxes", "password": "pixion123" });
+    };
+
     $scope.data = [];
 
     //get data from REST Api
-    $http.get("/scrumboard/lists/").then(function(response) {
+    $http.get("/scrumboard/lists/").then(function (response) {
       $scope.data = response.data;
     });
   }
