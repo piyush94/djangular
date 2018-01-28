@@ -2,7 +2,7 @@
   "use strict";
 
   angular
-    .module("scrumboard.demo", [])
+    .module("scrumboard.demo", ['ngRoute'])
     .controller("ScrumboardController", [
       "$scope",
       "$http",

@@ -5,7 +5,7 @@
 
   function CardDirective() {
     return {
-      templateUrl: "/static/scrumboard/card.html",
+      templateUrl: "/static/html/card.html",
       restrict: "E",
       controller: [
         "$scope",

@@ -21,7 +21,7 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^$', ensure_csrf_cookie(TemplateView.as_view(template_name="scrumboard/home.html"))),
+    url(r'^$', ensure_csrf_cookie(TemplateView.as_view(template_name="home.html"))),
     url(r'^scrumboard/', include('scrumboard.urls')),
     url(r'^auth_api/', include('auth_api.urls')),
 ]
