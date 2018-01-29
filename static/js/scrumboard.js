@@ -28,9 +28,7 @@
       );
     };
 
-    $scope.login = function () {
-      $http.post('/auth_api/login/', { "username": "osboxes", "password": "pixion123" });
-    };
+    
 
     $scope.data = [];
 
