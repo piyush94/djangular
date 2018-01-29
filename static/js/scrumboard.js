@@ -28,8 +28,6 @@
       );
     };
 
-    
-
     $scope.data = [];
 
     //get data from REST Api
