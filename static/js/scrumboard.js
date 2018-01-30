@@ -32,7 +32,7 @@
     $scope.logout = function () {
       $http.get('/auth_api/logout/')
         .then(function () {
-            $location.url('/login');
+          $location.url('/login');
         });
     }
 
@@ -42,5 +42,9 @@
     $http.get("/scrumboard/lists/").then(function (response) {
       $scope.data = response.data;
     });
+
+    $scope.sortBy = 'story_points';
+    $scope.reverse = true;
+    $scope.showFilters = false;
   }
 })();

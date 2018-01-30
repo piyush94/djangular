@@ -1,4 +1,4 @@
-(function() {
+(function () {
   "use strict";
 
   angular.module("scrumboard.demo").directive("scrumboardCard", CardDirective);
@@ -10,19 +10,38 @@
       controller: [
         "$scope",
         "$http",
-        function($scope, $http) {
+        function ($scope, $http) {
+
           var url = "/scrumboard/cards/" + $scope.card.id + "/";
 
-          $scope.update = function() {
-            $http.put(url, $scope.card);
+          $scope.destList = $scope.list;
+
+          $scope.update = function () {
+            return $http.put(url, $scope.card);
           };
 
-          $scope.delete = function() {
-            $http.delete(url).then(function() {
-              var cards = $scope.list.cards;
-              cards.splice(cards.indexOf($scope.card), 1);
+          function removeCardFromList(card, list) {
+            var cards = list.cards;
+            cards.splice(cards.indexOf(card), 1);
+          }
+
+          $scope.delete = function () {
+            $http.delete(url).then(function () {
+              removeCardFromList($scope.card, $scope.list);
             });
           };
+
+          $scope.move = function () {
+            if ($scope.destList === undefined) {
+              return;
+            }
+
+            $scope.card.list = $scope.destList.id;
+            $scope.update().then(function () {
+              removeCardFromList($scope.card, $scope.list);
+              $scope.destList.cards.push($scope.card);
+            });
+          }
 
           $scope.modelOptions = {
             debounce: 500
